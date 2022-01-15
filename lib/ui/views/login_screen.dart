@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:free_chat_app/data/user_dao.dart';
 import 'package:free_chat_app/ui/shared/app_colors.dart';
-import 'package:free_chat_app/ui/views/chat.dart';
 import 'package:free_chat_app/ui/widgets/app_buttons.dart';
 import 'package:free_chat_app/ui/widgets/app_large_text.dart';
+import 'package:provider/provider.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -15,10 +16,18 @@ class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
   var user = {};
 
-  final _phoneNumberController = TextEditingController(text: "09073178735");
-  final _passwordController = TextEditingController(text: "123lekan");
+  final _emailController = TextEditingController(text: 'leksguy97@gmail.com');
+  final _passwordController = TextEditingController(text: "12345678");
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
+    final userDao = Provider.of<UserDao>(context, listen: false);
     return Scaffold(
         body: SingleChildScrollView(
       child: Column(
@@ -38,7 +47,7 @@ class _LoginScreenState extends State<LoginScreen> {
               child: Column(
                 children: [
                   TextFormField(
-                    controller: _phoneNumberController,
+                    controller: _emailController,
                     onSaved: (value) {
                       user['phoneNumber'] = value!;
                     },
@@ -109,26 +118,51 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
                   const SizedBox(
-                    height: 400,
+                    height: 300,
                   ),
                   AppButtons(
                     color: Colors.white,
                     text: 'Continue',
                     size: 280,
+                    height: 50,
+                    backgroundColor: primaryColor,
+                    borderColor: primaryColor,
+                    onPressed: () {
+                      userDao.login(
+                          _emailController.text, _passwordController.text);
+                      // if (_formKey.currentState!.validate()) {
+                      //   Navigator.of(context).push(
+                      //     MaterialPageRoute(
+                      //       builder: (BuildContext context) =>
+                      //           const ChatScreen(),
+                      //     ),
+                      //   );
+                      // } else {
+                      //   debugPrint("not ok");
+                      // }
+                    },
+                  ),
+                  const SizedBox(height: 20),
+                  AppButtons(
+                    color: Colors.white,
+                    text: 'Signup',
+                    size: 280,
                     height: 48,
                     backgroundColor: primaryColor,
                     borderColor: primaryColor,
                     onPressed: () {
-                      if (_formKey.currentState!.validate()) {
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (BuildContext context) =>
-                                const ChatScreen(),
-                          ),
-                        );
-                      } else {
-                        debugPrint("not ok");
-                      }
+                      userDao.signup(
+                          _emailController.text, _passwordController.text);
+                      // if (_formKey.currentState!.validate()) {
+                      //   Navigator.of(context).push(
+                      //     MaterialPageRoute(
+                      //       builder: (BuildContext context) =>
+                      //           const ChatScreen(),
+                      //     ),
+                      //   );
+                      // } else {
+                      //   debugPrint("not ok");
+                      // }
                     },
                   )
                 ],
