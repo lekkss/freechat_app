@@ -24,18 +24,18 @@ class MessageWidget extends StatelessWidget {
       ),
       child: Column(
         children: [
-          // if (email != null) ...[
-          //   Padding(
-          //     padding: const EdgeInsets.only(top: 4),
-          //     child: Align(
-          //       alignment: Alignment.topRight,
-          //       child: Text(
-          //         email!,
-          //         style: const TextStyle(color: Colors.grey),
-          //       ),
-          //     ),
-          //   ),
-          // ],
+          if (email != null) ...[
+            Padding(
+              padding: const EdgeInsets.only(top: 4),
+              child: Align(
+                alignment: Alignment.topRight,
+                child: Text(
+                  email!,
+                  style: const TextStyle(color: Colors.grey),
+                ),
+              ),
+            ),
+          ],
           Align(
             alignment: Alignment.centerRight,
             child: Container(

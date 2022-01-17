@@ -134,7 +134,7 @@ class MessageListState extends State<MessageList> {
         builder: (context, snapshot) {
           if (!snapshot.hasData) {
             return const Center(
-              child: LinearProgressIndicator(),
+              child: CircularProgressIndicator(),
             );
           }
           return _buildList(context, snapshot.data!.docs);
