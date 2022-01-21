@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:free_chat_app/data/message.dart';
 import 'package:free_chat_app/data/message_dao.dart';
 import 'package:free_chat_app/data/user_dao.dart';
+import 'package:free_chat_app/ui/shared/app_colors.dart';
 import 'package:provider/provider.dart';
 import 'message_widget.dart';
 
@@ -17,7 +18,7 @@ class MessageList extends StatefulWidget {
 class MessageListState extends State<MessageList> {
   final TextEditingController _messageController = TextEditingController();
   final ScrollController _scrollController = ScrollController();
-  String? email;
+  String? email, userId;
 
   @override
   Widget build(BuildContext context) {
@@ -25,6 +26,7 @@ class MessageListState extends State<MessageList> {
     final messageDao = Provider.of<MessageDao>(context, listen: false);
     final userDao = Provider.of<UserDao>(context, listen: false);
     email = userDao.email();
+    userId = userDao.userId();
 
     return Scaffold(
       backgroundColor: Colors.grey[100],
@@ -37,18 +39,23 @@ class MessageListState extends State<MessageList> {
             radius: 30,
           ),
         ),
-        title: const Text(
-          'Alex Gift',
-          style: TextStyle(color: Colors.black),
+        title: Text(
+          email!,
+          style: const TextStyle(
+            color: Colors.black,
+            fontSize: 13,
+          ),
         ),
         actions: [
           const Icon(
             Icons.search,
             color: Colors.black,
+            size: 18,
           ),
           const Icon(
             Icons.more_vert_rounded,
             color: Colors.black,
+            size: 18,
           ),
           IconButton(
             onPressed: () {
@@ -57,6 +64,7 @@ class MessageListState extends State<MessageList> {
             icon: const Icon(
               Icons.logout,
               color: Colors.black,
+              size: 18,
             ),
           )
         ],
@@ -96,8 +104,8 @@ class MessageListState extends State<MessageList> {
                             icon: Icon(
                               _canSendMessage()
                                   ? CupertinoIcons.add
-                                  : CupertinoIcons.add,
-                              color: Colors.grey,
+                                  : Icons.send,
+                              color: primaryColor,
                             ),
                             onPressed: () {
                               _sendMessage(messageDao);
@@ -117,6 +125,7 @@ class MessageListState extends State<MessageList> {
   void _sendMessage(MessageDao messageDao) {
     if (_canSendMessage()) {
       final message = Message(
+        userId: userId,
         text: _messageController.text,
         date: DateTime.now(),
         email: email,
@@ -155,10 +164,14 @@ class MessageListState extends State<MessageList> {
 
   Widget _buildListItem(BuildContext context, DocumentSnapshot snapshot) {
     final message = Message.fromSnapshot(snapshot);
-    return MessageWidget(
-      message.text,
-      message.date,
-      message.email,
+    return Align(
+      alignment: message.userId == userId
+          ? Alignment.centerRight
+          : Alignment.centerLeft,
+      child: MessageWidget(
+        message: message,
+        isMe: message.userId == userId,
+      ),
     );
   }
 

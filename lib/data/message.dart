@@ -1,28 +1,37 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Message {
+  final String? userId;
   final String text;
   final DateTime date;
   final String? email;
+  final bool? flagged;
   DocumentReference? reference;
 
   Message({
+    this.userId,
     required this.text,
     required this.date,
     this.email,
+    this.flagged = false,
     this.reference,
   });
 
-  factory Message.fromJson(Map<dynamic, dynamic> json) => Message(
-        text: json['text'] as String,
-        date: DateTime.parse(json['date'] as String),
-        email: json['email'] as String?,
-      );
+  factory Message.fromJson(Map<dynamic, dynamic> json) {
+    return Message(
+      userId: json['userId'] as String?,
+      text: json['text'] as String,
+      date: DateTime.parse(json['date'] as String),
+      email: json['email'] as String?,
+      flagged: json['flagged'] as bool? ?? false,
+    );
+  }
 
   Map<String, dynamic> toJson() => <String, dynamic>{
         'date': date.toString(),
         'text': text,
         'email': email,
+        'userId': userId,
       };
 
   factory Message.fromSnapshot(DocumentSnapshot snapshot) {
