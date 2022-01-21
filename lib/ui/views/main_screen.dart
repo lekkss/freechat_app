@@ -73,6 +73,15 @@ class _MainScreenState extends State<MainScreen> {
           )
         ],
       ),
+      floatingActionButton: FloatingActionButton(
+        child: const Icon(
+          Icons.add_call,
+          color: Colors.white,
+          size: 30,
+        ),
+        backgroundColor: primaryColor,
+        onPressed: () {},
+      ),
     );
   }
 }

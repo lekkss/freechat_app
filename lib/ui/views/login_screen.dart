@@ -16,8 +16,8 @@ class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
   var user = {};
 
-  final _emailController = TextEditingController(text: 'leksguy97@gmail.com');
-  final _passwordController = TextEditingController(text: "12345678");
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
   @override
   void dispose() {
     _emailController.dispose();
@@ -65,7 +65,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       filled: true,
                       fillColor: const Color(0X3BDCDCDC),
                       enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(4),
+                        borderRadius: BorderRadius.circular(16),
                         borderSide: const BorderSide(
                           color: Color(0X3BDCDCDC),
                         ),
@@ -75,7 +75,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         borderSide: const BorderSide(color: Colors.red),
                       ),
                       focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(4),
+                        borderRadius: BorderRadius.circular(16),
                         borderSide: const BorderSide(color: primaryColor),
                       ),
                     ),
@@ -102,7 +102,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       filled: true,
                       fillColor: const Color(0X3BDCDCDC),
                       enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(4),
+                        borderRadius: BorderRadius.circular(16),
                         borderSide: const BorderSide(
                           color: Color(0X3BDCDCDC),
                         ),
@@ -112,7 +112,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         borderSide: const BorderSide(color: Colors.red),
                       ),
                       focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(4),
+                        borderRadius: BorderRadius.circular(16),
                         borderSide: const BorderSide(color: primaryColor),
                       ),
                     ),
@@ -147,7 +147,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     color: Colors.white,
                     text: 'Signup',
                     size: 280,
-                    height: 48,
+                    height: 50,
                     backgroundColor: primaryColor,
                     borderColor: primaryColor,
                     onPressed: () {

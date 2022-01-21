@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:free_chat_app/data/message.dart';
 import 'package:free_chat_app/data/user_dao.dart';
 import 'package:free_chat_app/ui/shared/app_colors.dart';
 import 'package:free_chat_app/ui/views/message_list.dart';
@@ -26,7 +25,7 @@ class _TabViewState extends State<TabView> with SingleTickerProviderStateMixin {
     final userDao = Provider.of<UserDao>(context, listen: false);
     email = userDao.email();
 
-    final Message message;
+    //final Message message;
     return Column(
       children: [
         Padding(
