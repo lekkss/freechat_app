@@ -75,7 +75,7 @@ class _TabViewState extends State<TabView> with SingleTickerProviderStateMixin {
           child: TabBarView(
             controller: _tabController,
             children: <Widget>[
-              GestureDetector(
+              ListTile(
                 onTap: () {
                   Navigator.of(context).push(
                     MaterialPageRoute(
@@ -83,11 +83,9 @@ class _TabViewState extends State<TabView> with SingleTickerProviderStateMixin {
                     ),
                   );
                 },
-                child: ListTile(
-                  leading: const CircleAvatar(),
-                  title: Text(email!),
-                  subtitle: const Text('message'),
-                ),
+                leading: const CircleAvatar(),
+                title: Text(email!),
+                subtitle: const Text('message'),
               ),
               const Center(
                 child: Text('Archived'),

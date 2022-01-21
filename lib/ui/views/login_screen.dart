@@ -57,8 +57,8 @@ class _LoginScreenState extends State<LoginScreen> {
                       }
                     },
                     decoration: InputDecoration(
-                      hintText: 'Phone Number',
-                      labelText: 'Phone Number',
+                      hintText: ' Email',
+                      labelText: ' Email',
                       labelStyle: const TextStyle(
                         color: primaryColor,
                       ),

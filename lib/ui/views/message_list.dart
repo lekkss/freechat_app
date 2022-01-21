@@ -5,7 +5,7 @@ import 'package:free_chat_app/data/message.dart';
 import 'package:free_chat_app/data/message_dao.dart';
 import 'package:free_chat_app/data/user_dao.dart';
 import 'package:free_chat_app/ui/shared/app_colors.dart';
-import 'package:free_chat_app/ui/views/login_screen.dart';
+// import 'package:free_chat_app/ui/views/login_screen.dart';
 import 'package:provider/provider.dart';
 import 'message_widget.dart';
 
@@ -61,11 +61,11 @@ class MessageListState extends State<MessageList> {
           IconButton(
             onPressed: () {
               userDao.logout();
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (BuildContext context) => const LoginScreen(),
-                ),
-              );
+              // Navigator.of(context).push(
+              //   MaterialPageRoute(
+              //     builder: (BuildContext context) => const LoginScreen(),
+              //   ),
+              // );
             },
             icon: const Icon(
               Icons.logout,
