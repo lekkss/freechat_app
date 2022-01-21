@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:free_chat_app/data/message.dart';
 import 'package:free_chat_app/ui/shared/app_colors.dart';
 
 import 'app_buttons.dart';
 
 class TakeActionScreen extends StatefulWidget {
-  const TakeActionScreen({Key? key}) : super(key: key);
+  final Message message;
+  const TakeActionScreen({Key? key, required this.message}) : super(key: key);
 
   @override
   _TakeActionScreenState createState() => _TakeActionScreenState();
@@ -49,12 +51,15 @@ class _TakeActionScreenState extends State<TakeActionScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text(
-                    "Report this user?",
-                    style: TextStyle(
+                  Text(
+                    "Report ${widget.message.email}",
+                    style: const TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
                     ),
+                  ),
+                  const SizedBox(
+                    height: 10,
                   ),
                   const Text(
                     "Last 5 messages from this user will be sent\nTo FreeChat for security purposes",
@@ -78,6 +83,7 @@ class _TakeActionScreenState extends State<TakeActionScreen> {
                     borderColor: primaryColor,
                     text: 'Report User',
                     onPressed: () {
+                      widget.message.reference!.delete();
                       Navigator.of(context).pop();
                     },
                   )
