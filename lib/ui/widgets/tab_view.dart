@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:free_chat_app/data/message.dart';
+import 'package:free_chat_app/data/user_dao.dart';
 import 'package:free_chat_app/ui/shared/app_colors.dart';
 import 'package:free_chat_app/ui/views/message_list.dart';
+import 'package:provider/provider.dart';
 
 class TabView extends StatefulWidget {
   const TabView({Key? key}) : super(key: key);
@@ -10,6 +13,7 @@ class TabView extends StatefulWidget {
 }
 
 class _TabViewState extends State<TabView> with SingleTickerProviderStateMixin {
+  String? email;
   late TabController _tabController;
   @override
   void initState() {
@@ -19,6 +23,10 @@ class _TabViewState extends State<TabView> with SingleTickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
+    final userDao = Provider.of<UserDao>(context, listen: false);
+    email = userDao.email();
+
+    final Message message;
     return Column(
       children: [
         Padding(
@@ -76,10 +84,10 @@ class _TabViewState extends State<TabView> with SingleTickerProviderStateMixin {
                     ),
                   );
                 },
-                child: const ListTile(
-                  leading: CircleAvatar(),
-                  title: Text("name"),
-                  subtitle: Text('message'),
+                child: ListTile(
+                  leading: const CircleAvatar(),
+                  title: Text(email!),
+                  subtitle: const Text('message'),
                 ),
               ),
               const Center(

@@ -79,7 +79,7 @@ class MessageWidget extends StatelessWidget {
           if (!isMe && message.flagged!) ...[
             Container(
               color: Colors.white,
-              height: 171,
+              height: 180,
               margin: const EdgeInsets.only(top: 10),
               width: MediaQuery.of(context).size.width,
               child: Padding(
@@ -95,7 +95,7 @@ class MessageWidget extends StatelessWidget {
                       height: 20,
                     ),
                     Text(
-                      "Sir Alex uses inappropriate word \"${message.text}\" in this conversation with you I pressume Alex to be a bully",
+                      "Sir Alex uses inappropriate word \"${message.text}\" in this conversation with you I pressume \"${message.email}\"  to be a bully",
                       textAlign: TextAlign.center,
                     ),
                     const SizedBox(
@@ -108,7 +108,7 @@ class MessageWidget extends StatelessWidget {
                             text: 'Take Action',
                             color: Colors.white,
                             size: 20,
-                            height: 50,
+                            height: 48,
                             backgroundColor: primaryColor,
                             borderColor: primaryColor,
                             onPressed: () {
@@ -127,7 +127,7 @@ class MessageWidget extends StatelessWidget {
                             text: 'Continue',
                             color: primaryColor,
                             size: 20,
-                            height: 50,
+                            height: 48,
                             backgroundColor: Colors.white,
                             borderColor: primaryColor,
                             onPressed: () {
