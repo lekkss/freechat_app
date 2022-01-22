@@ -3,10 +3,10 @@ import 'package:free_chat_app/data/message.dart';
 import 'package:free_chat_app/ui/shared/app_colors.dart';
 import 'package:free_chat_app/ui/widgets/app_buttons.dart';
 import 'package:free_chat_app/ui/widgets/continue_chat.dart';
-import 'package:free_chat_app/ui/widgets/take_actions.dart';
+import 'package:free_chat_app/ui/widgets/take_actions_a.dart';
 import 'package:intl/intl.dart';
 
-class MessageWidget extends StatelessWidget {
+class MessageWidget extends StatefulWidget {
   // final String message;
   // final DateTime date;
   // final String? email;
@@ -20,6 +20,13 @@ class MessageWidget extends StatelessWidget {
   }) : super(key: key);
 
   @override
+  State<MessageWidget> createState() => _MessageWidgetState();
+}
+
+class _MessageWidgetState extends State<MessageWidget> {
+  late bool showCont = true;
+
+  @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(
@@ -30,13 +37,13 @@ class MessageWidget extends StatelessWidget {
       ),
       child: Column(
         crossAxisAlignment:
-            isMe ? CrossAxisAlignment.end : CrossAxisAlignment.start,
+            widget.isMe ? CrossAxisAlignment.end : CrossAxisAlignment.start,
         children: [
-          if (message.email != null) ...[
+          if (widget.message.email != null) ...[
             Padding(
               padding: const EdgeInsets.only(top: 4),
               child: Text(
-                message.email!,
+                widget.message.email!,
                 style: const TextStyle(color: Colors.grey),
               ),
             ),
@@ -49,7 +56,7 @@ class MessageWidget extends StatelessWidget {
                 topLeft: Radius.circular(16),
                 topRight: Radius.circular(4),
               ),
-              color: isMe ? chatColor : const Color(0XFFE9EAEE),
+              color: widget.isMe ? chatColor : const Color(0XFFE9EAEE),
             ),
             child: Padding(
               padding: const EdgeInsets.only(
@@ -59,7 +66,7 @@ class MessageWidget extends StatelessWidget {
                 bottom: 8,
               ),
               child: Text(
-                message.text,
+                widget.message.text,
                 style: const TextStyle(
                   fontSize: 15,
                 ),
@@ -69,17 +76,16 @@ class MessageWidget extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(top: 4),
             child: Text(
-              DateFormat('kk:mma').format(message.date).toString(),
+              DateFormat('kk:mma').format(widget.message.date).toString(),
               style: const TextStyle(
                 color: Colors.grey,
                 fontSize: 11,
               ),
             ),
           ),
-          if (!isMe && message.flagged!) ...[
+          if (!widget.isMe && widget.message.flagged!) ...[
             Container(
               color: Colors.white,
-              height: 180,
               margin: const EdgeInsets.only(top: 10),
               width: MediaQuery.of(context).size.width,
               child: Padding(
@@ -95,11 +101,18 @@ class MessageWidget extends StatelessWidget {
                       height: 20,
                     ),
                     Text(
-                      "Sir Alex uses inappropriate word \"${message.text}\" in this conversation with you I pressume \"${message.email}\"  to be a bully",
+                      "${widget.message.email} uses inappropriate word \"${widget.message.text}\" in this conversation with you I pressume \"${widget.message.email}\"  to be a bully\nBut we have informed him",
                       textAlign: TextAlign.center,
                     ),
                     const SizedBox(
-                      height: 20,
+                      height: 10,
+                    ),
+                    const Text(
+                      "Will you like to",
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    const SizedBox(
+                      height: 10,
                     ),
                     Row(
                       children: [
@@ -112,11 +125,11 @@ class MessageWidget extends StatelessWidget {
                             backgroundColor: primaryColor,
                             borderColor: primaryColor,
                             onPressed: () {
-                              Navigator.of(context).push(
+                              Navigator.of(context).pushReplacement(
                                 MaterialPageRoute(
                                   builder: (BuildContext context) =>
-                                      TakeActionScreen(
-                                    message: message,
+                                      TakeActionScreenA(
+                                    message: widget.message,
                                   ),
                                 ),
                               );
@@ -137,7 +150,7 @@ class MessageWidget extends StatelessWidget {
                                 MaterialPageRoute(
                                   builder: (BuildContext context) =>
                                       ContinueChat(
-                                    message: message,
+                                    message: widget.message,
                                   ),
                                 ),
                               );
@@ -151,6 +164,46 @@ class MessageWidget extends StatelessWidget {
               ),
             )
           ],
+          if (widget.isMe && widget.message.flagged!) ...[
+            showCont == true
+                ? Container(
+                    width: double.infinity,
+                    color: Colors.white,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Column(
+                            children: const [
+                              Text(
+                                "Warning: Inappropriate words found",
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              Text(
+                                "Your Message contains abusive words, it can\ntrigger your account to be suspended.",
+                                textAlign: TextAlign.center,
+                              ),
+                            ],
+                          ),
+                          IconButton(
+                              onPressed: () {
+                                setState(() {
+                                  showCont = false;
+                                });
+                              },
+                              icon: const Icon(Icons.cancel_outlined))
+                        ],
+                      ),
+                    ),
+                  )
+                : Container()
+          ]
         ],
       ),
     );

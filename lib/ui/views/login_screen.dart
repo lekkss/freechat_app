@@ -120,32 +120,32 @@ class _LoginScreenState extends State<LoginScreen> {
                   const SizedBox(
                     height: 300,
                   ),
-                  AppButtons(
-                    color: Colors.white,
-                    text: 'Continue',
-                    size: 280,
-                    height: 50,
-                    backgroundColor: primaryColor,
-                    borderColor: primaryColor,
-                    onPressed: () {
-                      userDao.login(
-                          _emailController.text, _passwordController.text);
-                      // if (_formKey.currentState!.validate()) {
-                      //   Navigator.of(context).push(
-                      //     MaterialPageRoute(
-                      //       builder: (BuildContext context) =>
-                      //           const ChatScreen(),
-                      //     ),
-                      //   );
-                      // } else {
-                      //   debugPrint("not ok");
-                      // }
-                    },
-                  ),
+                  // AppButtons(
+                  //   color: Colors.white,
+                  //   text: 'Continue',
+                  //   size: 280,
+                  //   height: 50,
+                  //   backgroundColor: primaryColor,
+                  //   borderColor: primaryColor,
+                  //   onPressed: () {
+                  //     userDao.login(
+                  //         _emailController.text, _passwordController.text);
+                  //     // if (_formKey.currentState!.validate()) {
+                  //     //   Navigator.of(context).push(
+                  //     //     MaterialPageRoute(
+                  //     //       builder: (BuildContext context) =>
+                  //     //           const ChatScreen(),
+                  //     //     ),
+                  //     //   );
+                  //     // } else {
+                  //     //   debugPrint("not ok");
+                  //     // }
+                  //   },
+                  // ),
                   const SizedBox(height: 20),
                   AppButtons(
                     color: Colors.white,
-                    text: 'Signup',
+                    text: 'Continue',
                     size: 280,
                     height: 50,
                     backgroundColor: primaryColor,

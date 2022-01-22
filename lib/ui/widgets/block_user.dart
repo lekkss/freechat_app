@@ -2,19 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:free_chat_app/data/message.dart';
 import 'package:free_chat_app/ui/shared/app_colors.dart';
 import 'package:free_chat_app/ui/views/message_list.dart';
-import 'package:free_chat_app/ui/views/message_widget.dart';
 
 import 'app_buttons.dart';
 
-class TakeActionScreen extends StatefulWidget {
+class BlockUserScreeen extends StatefulWidget {
   final Message message;
-  const TakeActionScreen({Key? key, required this.message}) : super(key: key);
+  const BlockUserScreeen({Key? key, required this.message}) : super(key: key);
 
   @override
-  _TakeActionScreenState createState() => _TakeActionScreenState();
+  _BlockUserScreeenState createState() => _BlockUserScreeenState();
 }
 
-class _TakeActionScreenState extends State<TakeActionScreen> {
+class _BlockUserScreeenState extends State<BlockUserScreeen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,7 +53,7 @@ class _TakeActionScreenState extends State<TakeActionScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "Report ${widget.message.email}",
+                    "Block ${widget.message.email}",
                     style: const TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
@@ -64,13 +63,13 @@ class _TakeActionScreenState extends State<TakeActionScreen> {
                     height: 10,
                   ),
                   const Text(
-                    "Last 5 messages from this user will be sent\nTo FreeChat for security purposes",
+                    "Blocked contack will no longer\nbe able to send you messages",
                   ),
                   Row(
                     children: [
                       Checkbox(value: false, onChanged: (value) {}),
                       const Text(
-                        "Save chat with this user",
+                        "Delete previous chat with this user",
                       ),
                     ],
                   ),
@@ -83,7 +82,7 @@ class _TakeActionScreenState extends State<TakeActionScreen> {
                     height: 45,
                     backgroundColor: primaryColor,
                     borderColor: primaryColor,
-                    text: 'Report User',
+                    text: 'Block User',
                     onPressed: () {
                       widget.message.reference!.update({
                         "flagged": false,

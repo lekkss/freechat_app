@@ -47,32 +47,35 @@ class MessageListState extends State<MessageList> {
             fontSize: 13,
           ),
         ),
-        actions: [
-          const Icon(
+        actions: const [
+          Icon(
             Icons.search,
             color: Colors.black,
             size: 18,
           ),
-          const Icon(
+          Icon(
             Icons.more_vert_rounded,
             color: Colors.black,
             size: 18,
           ),
-          IconButton(
-            onPressed: () {
-              userDao.logout();
-              // Navigator.of(context).push(
-              //   MaterialPageRoute(
-              //     builder: (BuildContext context) => const LoginScreen(),
-              //   ),
-              // );
-            },
-            icon: const Icon(
-              Icons.logout,
-              color: Colors.black,
-              size: 18,
-            ),
+          SizedBox(
+            width: 20,
           )
+          // IconButton(
+          //   onPressed: () {
+          //     userDao.logout();
+          //     // Navigator.of(context).push(
+          //     //   MaterialPageRoute(
+          //     //     builder: (BuildContext context) => const LoginScreen(),
+          //     //   ),
+          //     // );
+          //   },
+          //   icon: const Icon(
+          //     Icons.logout,
+          //     color: Colors.black,
+          //     size: 18,
+          //   ),
+          // )
         ],
       ),
       body: Padding(
