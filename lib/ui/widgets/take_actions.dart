@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:free_chat_app/data/message.dart';
 import 'package:free_chat_app/ui/shared/app_colors.dart';
 import 'package:free_chat_app/ui/views/message_list.dart';
-import 'package:free_chat_app/ui/views/message_widget.dart';
 
 import 'app_buttons.dart';
 
@@ -91,8 +90,7 @@ class _TakeActionScreenState extends State<TakeActionScreen> {
                       widget.message.reference!.delete();
                       Navigator.of(context).pushReplacement(
                         MaterialPageRoute(
-                          builder: (BuildContext context) =>
-                              const MessageList(),
+                          builder: (BuildContext context) => MessageList(),
                         ),
                       );
                     },

@@ -79,7 +79,7 @@ class _TabViewState extends State<TabView> with SingleTickerProviderStateMixin {
                 onTap: () {
                   Navigator.of(context).push(
                     MaterialPageRoute(
-                      builder: (BuildContext context) => const MessageList(),
+                      builder: (BuildContext context) => MessageList(),
                     ),
                   );
                 },

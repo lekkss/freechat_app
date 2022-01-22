@@ -9,8 +9,10 @@ import 'package:free_chat_app/ui/shared/app_colors.dart';
 import 'package:provider/provider.dart';
 import 'message_widget.dart';
 
+// ignore: must_be_immutable
 class MessageList extends StatefulWidget {
-  const MessageList({Key? key}) : super(key: key);
+  late bool isBlocked;
+  MessageList({Key? key, this.isBlocked = false}) : super(key: key);
 
   @override
   MessageListState createState() => MessageListState();
@@ -79,9 +81,39 @@ class MessageListState extends State<MessageList> {
         ],
       ),
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.only(left: 16.0, right: 16.0, bottom: 16.0),
         child: Column(
           children: [
+            widget.isBlocked
+                ? Container(
+                    width: double.infinity,
+                    color: const Color(0XFFFFF9F4),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        children: [
+                          const Text(
+                            "⚠️ You have blocked this user!!",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(color: Colors.red),
+                          ),
+                          const Spacer(),
+                          IconButton(
+                            onPressed: () {
+                              setState(() {
+                                widget.isBlocked = false;
+                              });
+                            },
+                            icon: const Icon(
+                              Icons.cancel,
+                              color: Colors.red,
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                  )
+                : Container(),
             _getMessageList(messageDao),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,

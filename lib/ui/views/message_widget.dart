@@ -49,15 +49,25 @@ class _MessageWidgetState extends State<MessageWidget> {
             ),
           ],
           Container(
-            decoration: BoxDecoration(
-              borderRadius: const BorderRadius.only(
-                bottomLeft: Radius.circular(16),
-                bottomRight: Radius.circular(4),
-                topLeft: Radius.circular(16),
-                topRight: Radius.circular(4),
-              ),
-              color: widget.isMe ? chatColor : const Color(0XFFE9EAEE),
-            ),
+            decoration: widget.isMe
+                ? const BoxDecoration(
+                    borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.circular(16),
+                      bottomRight: Radius.circular(4),
+                      topLeft: Radius.circular(16),
+                      topRight: Radius.circular(4),
+                    ),
+                    color: chatColor,
+                  )
+                : const BoxDecoration(
+                    borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.circular(4),
+                      bottomRight: Radius.circular(16),
+                      topLeft: Radius.circular(4),
+                      topRight: Radius.circular(16),
+                    ),
+                    color: Color(0XFFE9EAEE),
+                  ),
             child: Padding(
               padding: const EdgeInsets.only(
                 left: 12,

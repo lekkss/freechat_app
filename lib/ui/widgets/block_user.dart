@@ -7,7 +7,10 @@ import 'app_buttons.dart';
 
 class BlockUserScreeen extends StatefulWidget {
   final Message message;
-  const BlockUserScreeen({Key? key, required this.message}) : super(key: key);
+  const BlockUserScreeen({
+    Key? key,
+    required this.message,
+  }) : super(key: key);
 
   @override
   _BlockUserScreeenState createState() => _BlockUserScreeenState();
@@ -90,8 +93,9 @@ class _BlockUserScreeenState extends State<BlockUserScreeen> {
                       widget.message.reference!.delete();
                       Navigator.of(context).pushReplacement(
                         MaterialPageRoute(
-                          builder: (BuildContext context) =>
-                              const MessageList(),
+                          builder: (BuildContext context) => MessageList(
+                            isBlocked: true,
+                          ),
                         ),
                       );
                     },
